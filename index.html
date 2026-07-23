@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForeAI – Golf Ball Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #FFFFFF;
+      --off:     #F7F7F5;
+      --ink:     #1A1A18;
+      --mid:     #6B6B65;
+      --rule:    #E2E2DC;
+      --green:   #3D7A50;
+      --green-l: #EBF3EE;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span { color: var(--green); }
+
+    nav a.contact-link {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a.contact-link:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 7rem 2rem 4rem;
+      text-align: center;
+    }
+
+    /* Replace this div with your <img> tag when ready */
+    .logo-placeholder {
+      width: 160px;
+      height: 160px;
+      border-radius: 32px;
+      background: var(--off);
+      border: 1px dashed var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--mid);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--mid);
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green-l);
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 2rem;
+    }
+
+    /* ── SECTION RULE ── */
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── SCREENSHOTS ── */
+    .screens-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .screens-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      justify-content: center;
+    }
+
+    .screen-mock {
+      flex-shrink: 0;
+      width: 160px;
+      height: 290px;
+      border-radius: 16px;
+      border: 1px solid var(--rule);
+      background: var(--off);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .screen-mock svg { opacity: 0.25; }
+
+    .screen-mock span {
+      font-size: 0.7rem;
+      color: var(--mid);
+      opacity: 0.6;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .how-section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      color: var(--ink);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .step {
+      background: var(--white);
+      padding: 1.5rem;
+    }
+
+    .step-number {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── COMING SOON ── */
+    .soon-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .soon-section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .soon-section p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .play-badge {
+      margin-top: 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      color: var(--mid);
+      font-weight: 400;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      border-top: 1px solid var(--rule);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .contact-section p {
+      font-size: 0.85rem;
+      color: var(--mid);
+    }
+
+    .contact-section a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .contact-section a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--mid);
+    }
+
+    footer a {
+      font-size: 0.75rem;
+      color: var(--mid);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .steps { grid-template-columns: 1fr; }
+      .contact-section { flex-direction: column; align-items: flex-start; }
+      .screens-row { justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/"><span>Fore</span>AI</a>
+    <a class="contact-link" href="mailto:foreai.support@gmail.com">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!--
+      LOGO: Replace the div below with your logo image.
+      Use the normal version on white background, e.g.:
+      <img src="logo.png" alt="ForeAI" width="160" height="160" style="border-radius: 32px;" />
+    -->
+    <div class="logo-placeholder">Logo</div>
+
+    <h1 class="hero-title">ForeAI</h1>
+    <p class="hero-subtitle">Golf Ball Finder</p>
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="6" stroke="#3D7A50" stroke-width="1.5"/>
+        <circle cx="7" cy="7" r="2" fill="#3D7A50"/>
+      </svg>
+      Available soon on Google Play
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- SCREENSHOTS -->
+  <section class="screens-section">
+    <div class="screens-row">
+      <div class="screen-mock">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="22" height="22" rx="4" stroke="#1A1A18" stroke-width="1.5"/>
+          <circle cx="14" cy="13" r="4" stroke="#1A1A18" stroke-width="1.5"/>
+          <line x1="14" y1="3" x2="14" y2="7" stroke="#1A1A18" stroke-width="1.5"/>
+          <line x1="14" y1="19" x2="14" y2="25" stroke="#1A1A18" stroke-width="1.5"/>
+          <line x1="3" y1="13" x2="7" y2="13" stroke="#1A1A18" stroke-width="1.5"/>
+          <line x1="19" y1="13" x2="25" y2="13" stroke="#1A1A18" stroke-width="1.5"/>
+        </svg>
+        <span>Screenshot</span>
+      </div>
+      <div class="screen-mock">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="22" height="22" rx="4" stroke="#1A1A18" stroke-width="1.5"/>
+          <circle cx="14" cy="13" r="5" stroke="#1A1A18" stroke-width="1.5"/>
+          <path d="M10 20 L14 17 L18 20" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Screenshot</span>
+      </div>
+      <div class="screen-mock">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="22" height="22" rx="4" stroke="#1A1A18" stroke-width="1.5"/>
+          <rect x="7" y="8" width="14" height="2" rx="1" fill="#1A1A18"/>
+          <rect x="7" y="13" width="10" height="2" rx="1" fill="#1A1A18"/>
+          <rect x="7" y="18" width="12" height="2" rx="1" fill="#1A1A18"/>
+        </svg>
+        <span>Screenshot</span>
+      </div>
+      <div class="screen-mock">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="22" height="22" rx="4" stroke="#1A1A18" stroke-width="1.5"/>
+          <path d="M9 14 L13 18 L19 10" stroke="#1A1A18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Screenshot</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <p class="step-number">01</p>
+        <p class="step-title">Point &amp; Detect</p>
+        <p class="step-desc">Point your camera at the grass, rough, or other search area. ForeAI automatically highlights detected golf balls.</p>
+      </div>
+      <div class="step">
+        <p class="step-number">02</p>
+        <p class="step-title">Lock the Marker</p>
+        <p class="step-desc">Once a ball is detected, tap lock to keep the marker anchored on the ball while you retrieve it.</p>
+      </div>
+      <div class="step">
+        <p class="step-number">03</p>
+        <p class="step-title">Take Photos</p>
+        <p class="step-desc">Take a photo to analyze it with ForeAI's highest-accuracy model and inspect the results in detail.</p>
+      </div>
+      <div class="step">
+        <p class="step-number">04</p>
+        <p class="step-title">Get the Best Results</p>
+        <p class="step-desc">Search in good lighting where the ball is visible when possible. Tall grass, shadows, and long distances may reduce detection accuracy.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- COMING SOON -->
+  <section class="soon-section">
+    <h2>Coming soon</h2>
+    <p>ForeAI is currently in development and will be available on Android shortly. Stay tuned.</p>
+    <div class="play-badge">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2L13 8L3 14V2Z" stroke="#6B6B65" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+      Google Play — Android
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section">
+    <p>Questions or feedback?</p>
+    <a href="mailto:foreai.support@gmail.com">foreai.support@gmail.com</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 ForeAI · Epixest</p>
+    <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - ForeAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:   #FFFFFF;
+      --off:     #F7F7F5;
+      --ink:     #1A1A18;
+      --mid:     #6B6B65;
+      --rule:    #E2E2DC;
+      --green:   #3D7A50;
+      --green-l: #EBF3EE;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.65;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span { color: var(--green); }
+
+    nav a.back-link {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a.back-link:hover { color: var(--ink); }
+
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 5rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.35rem;
+    }
+
+    .updated {
+      font-size: 0.85rem;
+      color: var(--mid);
+      margin-bottom: 2.5rem;
+    }
+
+    p {
+      font-size: 0.97rem;
+      color: var(--ink);
+      margin-bottom: 1.15rem;
+    }
+    p:last-of-type { margin-bottom: 0; }
+
+    strong { font-weight: 600; }
+
+    a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--ink); }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.8rem;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    footer a { color: var(--mid); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Fore<span>AI</span></a>
+  <a class="back-link" href="/">← Back to foreai.net</a>
+</nav>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated July 25, 2026</p>
+
+  <p>ForeAI is a mobile application that uses AI object detection and AR tracking to help you find golf balls.</p>
+
+  <p>ForeAI requests permission to use and process your device camera feed to detect golf balls. By default, camera frames are securely sent to our server via a cloudflared tunnel for processing; if a server connection isn't available, the app automatically falls back to processing directly on your device instead. In both cases, images are used only to detect golf balls and are immediately disposed afterward. Your photos are not uploaded or shared by the app without your consent.</p>
+
+  <p>If you choose to send feedback, only the information you include in your message is sent to us.</p>
+
+  <p>ForeAI does not sell your personal data, and does not use any third-party analytics or advertising services. Google Play may collect basic crash and device diagnostic data under its own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+
+  <p>ForeAI is intended for general audiences and is not directed at children under 13.</p>
+
+  <p>If you have questions about this policy or want to request or delete any data associated with you, contact us at <a href="mailto:foreai.support@gmail.com">foreai.support@gmail.com</a>. We will respond within 30 days.</p>
+
+  <footer>
+    <span>© 2026 ForeAI · Epixest</span>
+    <a href="/">foreai.net</a>
+  </footer>
+</main>
+
+</body>
+</html>

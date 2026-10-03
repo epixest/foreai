@@ -117,7 +117,11 @@
       letter-spacing: 0.02em;
       padding: 0.45rem 0.9rem;
       border-radius: 2rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
     }
+
+    .badge:hover { opacity: 0.8; }
 
     /* ── SECTION RULE ── */
     .section-rule {
@@ -139,6 +143,7 @@
       gap: 1rem;
       overflow-x: auto;
       padding-bottom: 0.5rem;
+      justify-content: center;
     }
 
     .screen-mock {
@@ -336,13 +341,13 @@
 
     <h1 class="hero-title">ForeAI</h1>
     <p class="hero-subtitle">Golf Ball Finder</p>
-    <div class="badge">
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.epixest.foreai" target="_blank" rel="noopener">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="7" cy="7" r="6" stroke="#3D7A50" stroke-width="1.5"/>
         <circle cx="7" cy="7" r="2" fill="#3D7A50"/>
       </svg>
-      Available soon on Google Play
-    </div>
+      Download on Google Play
+    </a>
   </section>
 
   <hr class="section-rule" />
@@ -350,10 +355,10 @@
   <!-- SCREENSHOTS -->
   <section class="screens-section">
     <div class="screens-row">
-      <img src="screenshot1.jpg" alt="Screenshot" style="width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
-      <img src="screenshot2.jpg" alt="Screenshot" style="width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
-      <img src="screenshot3.png" alt="Screenshot" style="width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
-      <img src="screenshot4.jpg" alt="Screenshot" style="width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
+      <img src="screenshot1.jpg" alt="Screenshot" style="flex-shrink: 0; width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
+      <img src="screenshot2.jpg" alt="Screenshot" style="flex-shrink: 0; width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
+      <img src="screenshot3.png" alt="Screenshot" style="flex-shrink: 0; width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
+      <img src="screenshot4.jpg" alt="Screenshot" style="flex-shrink: 0; width: 240px; height: 430px; border-radius: 16px; object-fit: cover; border: 1px solid #E2E2DC;" />
     </div>
   </section>
 
@@ -388,16 +393,16 @@
 
   <hr class="section-rule" />
 
-  <!-- COMING SOON -->
+  <!-- AVAILABLE NOW -->
   <section class="soon-section">
-    <h2>Coming soon</h2>
-    <p>ForeAI is currently in development and will be available on Android shortly. Stay tuned.</p>
-    <div class="play-badge">
+    <h2>Available on Android</h2>
+    <p>ForeAI is free to download on Google Play. Give it a try on your next round.</p>
+    <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.epixest.foreai" target="_blank" rel="noopener" style="text-decoration: none;">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 2L13 8L3 14V2Z" stroke="#6B6B65" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
-      Google Play - Android
-    </div>
+      Download on Google Play
+    </a>
   </section>
 
   <!-- CONTACT -->
